@@ -42,7 +42,7 @@ export class MembersService {
   // menyimpan data ke data base
   create(inputMember: CreateMemberDto): Member {
     const newMember: Member = {
-      id: this.members.length + 1,
+      id: Math.max(0, ...this.members.map((member) => member.id)) + 1,
       name: inputMember.name,
       email: inputMember.email,
       phone: inputMember.phone,

@@ -1,13 +1,32 @@
-import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { MembersService } from '../members/members.service.js';
 import { loginDto } from './dto/login-dto.js';
 import { forgotPasswordDto } from './dto/forgot-password-dto.js';
 import { resetPasswordDto } from './dto/reset-password-dto.js';
+import { registerDto } from './dto/register-dto.js';
 
 @Injectable()
 export class AuthService {
     constructor(private readonly membersService: MembersService) { }
     
+    register(input: registerDto) {
+        if (this.membersService.findByEmail(input.email)) {
+            throw new ConflictException('Email sudah terdaftar');
+        }
+
+        const member = this.membersService.create(input);
+
+        return {
+            message: 'Registrasi berhasil',
+            member: {
+                id: member.id,
+                name: member.name,
+                email: member.email,
+                phone: member.phone,
+            },
+        };
+    }
+
     login(input: loginDto) {
         const member = this.membersService.findByEmail(input.email);
 

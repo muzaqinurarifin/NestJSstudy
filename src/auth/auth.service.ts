@@ -37,7 +37,7 @@ export class AuthService {
         return { message: 'Instruksi reset password telah dikirim ke email Anda' };
     }
 
-    resetPassword(input: resetPasswordDto) {
+    passwordRecovery(input: resetPasswordDto) {
         if (input.newPassword !== input.confirmPassword) {
           throw new BadRequestException('Konfirmasi password tidak cocok');
         }

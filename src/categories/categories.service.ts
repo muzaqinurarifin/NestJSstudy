@@ -5,7 +5,7 @@ import { UpdateCategoryDto } from './dto/update-categories-dto.js';
 
 @Injectable()
 export class CategoriesService {
-  private Categories: Category[] = [
+  private categories: Category[] = [
     {
       id: 1,
       name: 'Category 1',
@@ -27,53 +27,53 @@ export class CategoriesService {
   // menampilkan semua data buku
   // menampilkan semua data buku
   findAll(): Category[] {
-    return this.Categories;
+    return this.categories;
   }
   // menyimpan data ke data base
   create(inputCategory: CreateCategoryDto): Category {
     const newCategory: Category = {
-      id: this.Categories.length + 1,
+      id: this.categories.length + 1,
       name: inputCategory.name,
     };
 
-    // simpan data ke database (dalam hal ini array Categories)
-    this.Categories.push(newCategory);
+    // simpan data ke database (dalam hal ini array categories)
+    this.categories.push(newCategory);
     return newCategory;
   }
 
   // menampilkna data berdasarkan id
   findById(id: number): Category | undefined {
     //undefined karena category hanya data tunggal
-    return this.Categories.find((category) => category.id === id);
+    return this.categories.find((category) => category.id === id);
   }
 
 
   // mengubah data berdasarkan id
   update(id: number, updateCategoryDto: UpdateCategoryDto): Category | undefined {
-    const categoryIndex = this.Categories.findIndex((category) => category.id === id);
+    const categoryIndex = this.categories.findIndex((category) => category.id === id);
 
     if (categoryIndex === -1) {
       return undefined; // jika data tidak ditemukan
     }
 
     const updatedCategory: Category = {
-      ...this.Categories[categoryIndex],
+      ...this.categories[categoryIndex],
       ...updateCategoryDto,
     }; // spread operator untuk menggabungkan data lama dan data baru
 
-    this.Categories[categoryIndex] = updatedCategory;
+    this.categories[categoryIndex] = updatedCategory;
     return updatedCategory; // mengembalikan data yang telah diubah
   }
 
   // menghapus data berdasarkan id
   remove(id: number): boolean {
-    const categoryIndex = this.Categories.findIndex((category) => category.id === id);
+    const categoryIndex = this.categories.findIndex((category) => category.id === id);
 
     if (categoryIndex === -1) {
       return false; // jika data tidak ditemukan
     }
 
-    this.Categories.splice(categoryIndex, 1);
+    this.categories.splice(categoryIndex, 1);
     return true; // mengembalikan true jika data berhasil dihapus
   }
 }

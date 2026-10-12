@@ -18,8 +18,8 @@ export class AuthController {
     return this.authService.forgotPassword(input);
   }
 
-  @Patch('reset-password')
-  resetPassword(@Body() input: resetPasswordDto) {
-    return this.authService.resetPassword(input);
+  @Patch('password-recovery')
+  passwordRecovery(@Body() input: resetPasswordDto) {
+    return this.authService.passwordRecovery(input);
   }
 }   

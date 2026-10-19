@@ -14,11 +14,10 @@ export class CreateBookDto {
     readonly isbn: string;
 
     @IsNotEmpty({ message: "Tahun terbit tidak boleh kosong" })
-    @IsString({message: "Tahun terbit harus berupa string"})
     readonly publishedYear: number;
 
     @IsNotEmpty({ message: "Status ketersediaan tidak boleh kosong" })
-    @IsString({message: "Status ketersediaan harus berupa string"})
+    
     readonly isAvailable: boolean;
 }
 

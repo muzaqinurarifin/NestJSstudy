@@ -16,7 +16,7 @@ export class BooksController {
     // menampilkan data berdasarkan id
     @Get(':id')
     findById(@Param('id') id: string) {
-        return this.booksService.findById(parseInt(id)); //parseInt karena id bertipe number
+        return this.booksService.findById(id); 
     }
 
     // menyimpan data ke database
@@ -29,13 +29,13 @@ export class BooksController {
     @Patch(':id')
         //@Param untuk mengambil parameter dari url, @Body untuk mengambil data dari body request
     update(@Param('id') id: string, @Body() updateBookDto: UpdateBookDto) {
-        return this.booksService.update(parseInt(id), updateBookDto);
+        return this.booksService.update(id, updateBookDto);
     }
 
     // menghapus data berdasarkan id
     @Delete(':id')
     remove(@Param('id') id: string) {
-        return this.booksService.remove(parseInt(id));
+        return this.booksService.remove(id);
     }
 
 }

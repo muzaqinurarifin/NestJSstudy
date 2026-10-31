@@ -17,7 +17,6 @@ export class CreateBookDto {
     readonly publishedYear: number;
 
     @IsNotEmpty({ message: "Status ketersediaan tidak boleh kosong" })
-    
     readonly isAvailable: boolean;
 }
 

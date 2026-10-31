@@ -10,6 +10,9 @@ import { AuthModule } from './auth/auth.module.js';
 import { SimpleLoggerMiddleware } from './middlewares/simple-logger/simple-logger.middleware.js';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
+import { UsersModule } from './users/users.module.js';
+import { OrdersModule } from './orders/orders.module.js';
+import { OrderItemModule } from './order-item/order-item.module.js';
 
 @Module({
   imports: [
@@ -48,6 +51,12 @@ import { ConfigService } from '@nestjs/config';
         synchronize: configService.get<string>('NODE_ENV') === 'development',
       }),
     }),
+
+    UsersModule,
+
+    OrdersModule,
+
+    OrderItemModule,
   ],
   controllers: [AppController],
   providers: [AppService],
